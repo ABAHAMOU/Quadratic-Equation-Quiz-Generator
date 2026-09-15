@@ -1,0 +1,511 @@
+/* ─── Google Fonts (loaded via intro.html, cascades to all pages) ─── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap');
+
+/* ─── Design tokens ─── */
+:root {
+    --ink:        #0f1117;
+    --paper:      #f5f2eb;
+    --cream:      #ede9df;
+    --accent:     #c0392b;
+    --accent2:    #2c6e6a;
+    --muted:      #7a7570;
+    --border:     #d4cfc5;
+
+    --serif:      'DM Serif Display', Georgia, serif;
+    --sans:       'Outfit', sans-serif;
+    --mono:       'DM Mono', 'Courier New', monospace;
+
+    --radius-sm:  4px;
+    --radius:     10px;
+    --shadow:     0 2px 12px rgba(15,17,23,0.10);
+    --shadow-lg:  0 8px 32px rgba(15,17,23,0.14);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ─── Base ─── */
+body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ─── Subtle grid background ─── */
+.grid-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.45;
+    z-index: 0;
+}
+
+/* ════════════════════════════════════════
+   INTRO PAGE
+════════════════════════════════════════ */
+
+.intro-layout {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100vh;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    gap: 48px;
+}
+
+/* Vertical sidebar label */
+.intro-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 6px;
+    flex-shrink: 0;
+}
+
+.sidebar-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.sidebar-line {
+    flex: 1;
+    width: 1px;
+    background: var(--border);
+    min-height: 60px;
+}
+
+/* Main content column */
+.intro-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Header */
+.intro-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+}
+
+.intro-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+}
+
+.intro-title em {
+    color: var(--accent2);
+    font-style: italic;
+}
+
+.intro-subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+}
+
+/* Theory blocks */
+.theory-block {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.theory-number {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--border);
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 4px;
+    user-select: none;
+}
+
+.theory-body h2 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.theory-body p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin-bottom: 14px;
+}
+
+.theory-body p:last-child { margin-bottom: 0; }
+
+.theory-body em  { color: var(--accent2); font-style: italic; }
+.theory-body strong { color: var(--ink); font-weight: 500; }
+
+/* Formula box */
+.formula-box {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    margin: 14px 0;
+}
+
+.formula {
+    font-family: var(--mono);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+}
+
+/* Cases grid */
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.case-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 18px;
+    background: white;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+}
+
+.case-neg::before  { background: var(--accent); }
+.case-zero::before { background: var(--muted); }
+.case-pos::before  { background: var(--accent2); }
+
+.case-sign {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.case-count {
+    font-family: var(--serif);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--ink);
+}
+
+.case-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.case-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.case-formula {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink);
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    margin-top: 4px;
+}
+
+/* CTA */
+.intro-cta { padding-top: 8px; }
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.02em;
+    transition: background 0.18s ease, gap 0.18s ease;
+}
+
+.btn-primary:hover {
+    background: var(--accent2);
+    gap: 16px;
+}
+
+.btn-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.18s ease;
+}
+
+.btn-primary:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* ════════════════════════════════════════
+   SHARED CARD PAGES (start, exercice, result)
+════════════════════════════════════════ */
+
+body:not(:has(.intro-layout)) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 44px;
+    width: 100%;
+    max-width: 580px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+/* Accent stripe on card */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ─── Card titles ─── */
+h1 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 28px;
+}
+
+/* ─── Progress indicator ─── */
+.progress {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--cream);
+    border-radius: 999px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+}
+
+/* ─── Equation display ─── */
+.equation {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    margin: 20px 0 24px;
+    display: inline-block;
+}
+
+/* ─── Timer ─── */
+.timer {
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    background: rgba(192,57,43,0.04);
+}
+
+/* ─── Input groups ─── */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 6px;
+    font-family: var(--mono);
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--cream);
+    text-align: left;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    display: block;
+    max-width: none;
+    margin: 0;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent2);
+    box-shadow: 0 0 0 3px rgba(44,110,106,0.12);
+    background: white;
+}
+
+/* ─── Buttons ─── */
+button, .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.18s ease;
+    margin-top: 8px;
+    width: 100%;
+}
+
+button:hover, .btn-submit:hover {
+    background: var(--accent2);
+}
+
+/* ─── Start page specific ─── */
+.container p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.container input[type="number"] {
+    max-width: 140px;
+    text-align: center;
+    margin: 0 auto 20px;
+    display: block;
+    font-size: 1.4rem;
+    padding: 12px;
+}
+
+/* ─── Score ─── */
+.score {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    color: var(--ink);
+    margin: 28px 0 8px;
+    line-height: 1;
+}
+
+.score-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 32px;
+}
+
+/* ─── Result link button ─── */
+.btn-link {
+    text-decoration: none;
+    display: block;
+}
+
+.btn-link button {
+    background: var(--ink);
+}
+
+.btn-link button:hover {
+    background: var(--accent2);
+}
+
+/* ─── Roots section ─── */
+#roots-section {
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    padding-top: 18px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+    .intro-sidebar { display: none; }
+    .intro-layout  { padding: 40px 20px 60px; }
+    .cases-grid    { grid-template-columns: 1fr; }
+    .container     { padding: 36px 24px; }
+}

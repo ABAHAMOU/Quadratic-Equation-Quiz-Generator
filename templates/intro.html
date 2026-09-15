@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction — Polynômes du 2nd degré</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <main class="intro-layout">
+
+        <aside class="intro-sidebar">
+            <span class="sidebar-label">Cours</span>
+            <div class="sidebar-line"></div>
+            <span class="sidebar-label">01</span>
+        </aside>
+
+        <div class="intro-content">
+
+            <header class="intro-header">
+                <p class="intro-eyebrow">Mathématiques — Algèbre</p>
+                <h1 class="intro-title">Polynômes<br><em>du second degré</em></h1>
+                <p class="intro-subtitle">
+                    Résoudre une équation quadratique, déterminer son discriminant,
+                    et interpréter ses solutions.
+                </p>
+            </header>
+
+            <section class="theory-block">
+                <div class="theory-number">①</div>
+                <div class="theory-body">
+                    <h2>Forme générale</h2>
+                    <p>
+                        Une équation du second degré s'écrit sous la forme canonique suivante,
+                        où les coefficients <em>a</em>, <em>b</em>, <em>c</em> sont des réels
+                        et <em>a</em> ≠ 0 :
+                    </p>
+                    <div class="formula-box">
+                        <span class="formula">ax² + bx + c = 0</span>
+                    </div>
+                    <p>
+                        Les termes <em>a</em>, <em>b</em> et <em>c</em> sont appelés
+                        <strong>monômes</strong>. Le coefficient <em>a</em> est dit
+                        <strong>dominant</strong> — il ne peut jamais être nul.
+                    </p>
+                </div>
+            </section>
+
+            <section class="theory-block">
+                <div class="theory-number">②</div>
+                <div class="theory-body">
+                    <h2>Le discriminant</h2>
+                    <p>
+                        Le nombre de solutions de l'équation est entièrement déterminé
+                        par le signe du <strong>discriminant</strong> Δ :
+                    </p>
+                    <div class="formula-box">
+                        <span class="formula">Δ = b² − 4ac</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cases-grid">
+                <div class="case-card case-neg">
+                    <div class="case-sign">Δ &lt; 0</div>
+                    <div class="case-count">0</div>
+                    <div class="case-label">solution réelle</div>
+                    <p class="case-desc">L'équation n'admet aucune solution dans ℝ.</p>
+                </div>
+                <div class="case-card case-zero">
+                    <div class="case-sign">Δ = 0</div>
+                    <div class="case-count">1</div>
+                    <div class="case-label">solution double</div>
+                    <div class="case-formula">x₀ = −b / 2a</div>
+                </div>
+                <div class="case-card case-pos">
+                    <div class="case-sign">Δ &gt; 0</div>
+                    <div class="case-count">2</div>
+                    <div class="case-label">solutions distinctes</div>
+                    <div class="case-formula">x = (−b ± √Δ) / 2a</div>
+                </div>
+            </section>
+
+            <div class="intro-cta">
+                <a href="{{ url_for('index') }}" class="btn-primary">
+                    Commencer les exercices
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>

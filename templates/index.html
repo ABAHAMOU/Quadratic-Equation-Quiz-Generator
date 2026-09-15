@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice — Polynômes du 2nd degré</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="container">
+        <h1>Résoudre l'équation</h1>
+
+        <div class="progress">
+            Exercice <strong>{{ current }}</strong> / {{ total }}
+        </div>
+
+        <div class="equation">{{ equation }}</div>
+
+        <div class="timer" id="timer">⏱ 150s</div>
+
+        <form method="POST" id="exerciceForm">
+
+            <div class="input-group">
+                <label for="delta">Discriminant (Δ)</label>
+                <input type="number" step="0.01" name="delta" id="delta" placeholder="Ex : 16" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nb_solutions">Nombre de solutions</label>
+                <input type="number" name="nb_solutions" id="nb_solutions" min="0" max="2" placeholder="0, 1 ou 2" required>
+            </div>
+
+            <div id="roots-section" style="display:none;">
+                <div class="input-group">
+                    <label for="x1">Valeur de x₁</label>
+                    <input type="number" step="0.01" name="x1" id="x1" placeholder="Ex : 2.5">
+                </div>
+                <div class="input-group">
+                    <label for="x2">Valeur de x₂</label>
+                    <input type="number" step="0.01" name="x2" id="x2" placeholder="Ex : −1">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Valider la réponse</button>
+        </form>
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script>
+            const nbInput = document.getElementById('nb_solutions');
+            const rootsSection = document.getElementById('roots-section');
+            nbInput.addEventListener('input', function() {
+                rootsSection.style.display = this.value > 0 ? 'block' : 'none';
+            });
+        </script>
+    </div>
+</body>
+</html>
